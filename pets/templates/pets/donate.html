@@ -1,0 +1,194 @@
+{% extends 'pets/base.html' %}
+{% load static %}
+
+{% block title %}Donate | Perfect Pawfriend{% endblock %}
+
+{% block extra_css %}
+<style>
+    .donate-container {
+        max-width: 800px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    .donate-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .donate-header h1 {
+        font-size: 2.8rem;
+        color: #ff7a8a;
+        margin-bottom: 1rem;
+    }
+
+    .donate-header p {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .donation-form {
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #ff7a8a;
+    }
+
+    .form-group textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    .donation-amounts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .amount-option {
+        padding: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .amount-option:hover,
+    .amount-option.selected {
+        border-color: #ff7a8a;
+        background-color: #fff5f6;
+    }
+
+    .amount-option input {
+        display: none;
+    }
+
+    .submit-btn {
+        background-color: #ff7a8a;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        width: 100%;
+    }
+
+    .submit-btn:hover {
+        background-color: #ff5a6e;
+        transform: scale(1.02);
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="donate-container">
+    <div class="donate-header">
+        <h1>Make a Donation</h1>
+        <p>Your contribution helps us provide care and find loving homes for more pets. Every donation makes a difference!</p>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" class="donation-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_name">Your Name</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_email">Email Address</label>
+            {{ form.email }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_amount">Donation Amount ($)</label>
+            {{ form.amount }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_donation_type">Donation Type</label>
+            {{ form.donation_type }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_payment_method">Payment Method</label>
+            {{ form.payment_method }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_message">Message (Optional)</label>
+            {{ form.message }}
+        </div>
+
+        <div class="form-group">
+            <label>
+                {{ form.is_anonymous }}
+                Make this donation anonymous
+            </label>
+        </div>
+
+        <button type="submit" class="submit-btn">Proceed to Payment</button>
+    </form>
+</div>
+{% endblock %} 

@@ -1,0 +1,144 @@
+{% extends 'pets/base.html' %}
+{% load static %}
+
+{% block title %}Adopt a Dog | Perfect Pawfriend{% endblock %}
+
+{% block extra_css %}
+<style>
+    header {
+        background: #ffb6b9;
+        padding: 30px 0;
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        animation: slideIn 1.5s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .dog-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 40px;
+        animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dog-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .dog-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .dog-info {
+        padding: 20px;
+    }
+
+    .dog-info h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #ff7a8a;
+        margin-bottom: 10px;
+    }
+
+    .dog-info p {
+        margin: 8px 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .dog-info .breed {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .wishlist-btn {
+        margin-top: 15px;
+        display: inline-block;
+        background: #ff7a8a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .wishlist-btn:hover {
+        background: #ff5a6e;
+        transform: scale(1.02);
+    }
+
+    .wishlist-btn i {
+        margin-right: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header>
+    🐾 Meet Our Lovely Dogs 🐶
+</header>
+
+<div class="dog-container">
+    {% for dog in dogs %}
+    <div class="dog-card">
+        {% if dog.name == "Max" %}
+        <img src="{% static 'images/germanshephard.jpg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Bella" %}
+        <img src="{% static 'images/pug.jpg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Charlie" %}
+        <img src="{% static 'images/ghumidog.jpg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Coop" %}
+        <img src="{% static 'images/Coop.jpeg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Dash" %}
+        <img src="{% static 'images/Dashund.jpeg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Pari" %}
+        <img src="{% static 'images/Bruno.jpeg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Hero" %}
+        <img src="{% static 'images/yourhero.jpg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% elif dog.name == "Sanskar" %}
+        <img src="{% static 'images/sanskarikutta.jpg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% else %}
+        <img src="{% static 'images/patludog.jpg' %}" alt="{{ dog.name }}" class="dog-image">
+        {% endif %}
+        <div class="dog-info">
+            <h3>{{ dog.name }}</h3>
+            <p><strong>Age:</strong> {{ dog.age }} years</p>
+            <p><strong>Description:</strong> {{ dog.description }}</p>
+            <button class="wishlist-btn"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,541 @@
+{% extends 'pets/base.html' %}
+{% load static %}
+
+{% block title %}Home | Perfect Pawfriend{% endblock %}
+
+{% block extra_css %}
+<style>
+    .display {
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center;
+        padding: 8rem 2rem;
+        text-align: center;
+        background-image: url("{% static 'images/display.png' %}");
+    }
+
+    .display h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        color: #ff7a8a;
+    }
+
+    .display p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        background-color: #ffa4b6;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+        background-color: #ff7a8a;
+        transform: scale(1.05);
+    }
+
+    .section-title {
+        text-align: center;
+        margin: 4rem 0 2rem;
+        font-size: 2.5rem;
+        color: #ff7a8a;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: #ff7a8a;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 3rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #ff7a8a, #ffb6b9);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+        border-radius: 10px;
+    }
+
+    .feature-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .feature-card h3 {
+        margin-bottom: 1rem;
+        color: #ff7a8a;
+        font-size: 1.5rem;
+    }
+
+    .feature-card p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .about-pawfriend {
+        background-color: #fffafc;
+        padding: 5rem 2rem;
+    }
+
+    .about-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .about-text {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .about-text h2 {
+        font-size: 2.5rem;
+        color: #ff7a8a;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .about-text h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 3px;
+        background: #ff7a8a;
+    }
+
+    .about-text p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-image {
+        flex: 1;
+        min-width: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .why-choose {
+        background-color: #fff;
+        padding: 5rem 2rem;
+        text-align: center;
+    }
+
+    .why-choose p {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 2rem;
+        background: #fffafc;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        color: #ff7a8a;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    footer {
+        background: linear-gradient(135deg, #ffb6b9 0%, #ff7a8a 100%);
+        color: white;
+        padding: 3rem 2rem 1.5rem;
+        margin-top: 3rem;
+        position: relative;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr;
+        gap: 2rem;
+    }
+
+    .footer-section {
+        padding: 0.5rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: white;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .footer-section p {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.1);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        padding: 0.3rem 0;
+        position: relative;
+        width: fit-content;
+    }
+
+    .contact-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .contact-item i {
+        font-size: 1.1rem;
+        width: 25px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .newsletter {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+
+    .newsletter h4 {
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        padding: 0.6rem;
+        border: none;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+    }
+
+    .newsletter-form button {
+        background: white;
+        color: #ff7a8a;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-bottom p {
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .login-btn {
+        background-color: #ffa4b6;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+        background-color: #ff7a8a;
+        transform: scale(1.05);
+    }
+
+    .login-btn i {
+        font-size: 1.2rem;
+    }
+
+    .search-form {
+        display: flex;
+        flex: 1;
+        gap: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="display">
+    <!-- Display section is empty, only showing background image -->
+</section>
+
+<h2 class="section-title">Why Choose Perfect Pawfriend?</h2>
+<div class="features">
+    <div class="feature-card">
+        <img src="{% static 'images/ownerdog.jpg' %}" alt="Dog Owner">
+        <h3>Dogs</h3>
+        <p>Find your loyal companion from our selection of loving dogs ready for their forever homes.</p>
+    </div>
+    <div class="feature-card">
+        <img src="{% static 'images/ownercat.jpg' %}" alt="Cat Owner">
+        <h3>Cats</h3>
+        <p>Discover your purrfect match among our adorable cats waiting to be part of your family.</p>
+    </div>
+    <div class="feature-card">
+        <img src="{% static 'images/ownercow.jpg' %}" alt="Other Pets">
+        <h3>Other Pets</h3>
+        <p>Explore our selection of other wonderful pets looking for loving homes.</p>
+    </div>
+</div>
+
+<section class="about-pawfriend">
+    <div class="about-container">
+        <div class="about-text">
+            <h2>What is PERFECT PAWFRIEND?</h2>
+            <p>
+                PERFECT PAWFRIEND is more than just a website — it's a loving bridge between kind-hearted humans and adorable pets looking for a forever home. Whether you're searching for a playful pup, a cuddly kitten, or a calm companion, we're here to help you find your perfect pawfriend.
+            </p>
+            <p>
+                Every animal deserves love, and we make it easy for you to open your heart and your home. With real stories, easy adoption tools, and heart-melting photos, we bring tails closer to happy endings — one paw at a time. 💕
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="{% static 'images/ownerdog.jpg' %}" alt="Happy Pet Owner">
+        </div>
+    </div>
+</section>
+
+<section class="why-choose">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <p>
+        At PERFECT PAWFRIEND, we don't just help you adopt a pet — we help you find a family member.
+        Every furry friend is given love, care, and attention before meeting you.
+        With personalized matches, expert advice, and ongoing support, your adoption journey is as special as your bond.
+    </p>
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Happy Pets</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Successful Adoptions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Satisfaction Rate</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>Perfect Pawfriend is dedicated to helping pets find their forever homes. We believe every animal deserves love and care.</p>
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <div class="footer-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'dogs' %}">Dogs</a>
+                <a href="{% url 'cats' %}">Cats</a>
+                <a href="{% url 'donate' %}">Donate</a>
+                <a href="#">Adoption Process</a>
+                <a href="#">Success Stories</a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@perfectpawfriend.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(123) 456-7890</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Pet Street, Animal City</p>
+                </div>
+            </div>
+            <div class="newsletter">
+                <h4>Subscribe to Our Newsletter</h4>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" style="color: {% if message.tags == 'success' %}green{% else %}red{% endif %}; margin-bottom: 10px;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form class="newsletter-form" method="post" action="{% url 'newsletter:subscribe' %}">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 Perfect Pawfriend. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,18 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfect Pawfriend</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+</head>
+<body>
+    <h1>Welcome to Perfect Pawfriend 🐶🐱</h1>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

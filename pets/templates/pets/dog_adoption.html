@@ -1,0 +1,27 @@
+<!-- pets/templates/pets/dog_adoption.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Adoption</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Adopt a Dog</h1>
+    <p>Find your perfect furry companion!</p>
+
+    <div class="dog-container">
+        {% for dog in dogs %}
+        <div class="dog-card">
+            <img src="{{ dog.image.url }}" alt="{{ dog.name }}">
+            <h2>{{ dog.name }}</h2>
+            <p><strong>Age:</strong> {{ dog.age }} years</p>
+            <p><strong>Breed:</strong> {{ dog.breed }}</p>
+            <p><strong>Quality:</strong> {{ dog.quality }}</p>
+            <a href="#" class="wishlist-btn">Add to Wishlist</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

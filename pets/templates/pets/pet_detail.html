@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="pet-detail">
+    <div class="pet-info">
+        <h2>{{ pet.name }}</h2>
+        <p><strong>Species:</strong> {{ pet.species }}</p>
+        <p><strong>Age:</strong> {{ pet.age }} years old</p>
+        <p><strong>Description:</strong> {{ pet.description }}</p>
+        <p><strong>Available for Adoption:</strong> {% if pet.available_for_adoption %}Yes{% else %}No{% endif %}</p>
+        <a href="#" class="btn">Adopt Me!</a>
+
+        <h3>Adopt {{ pet.name }}</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Submit Adoption Request</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

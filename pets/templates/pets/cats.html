@@ -1,0 +1,243 @@
+{% extends 'pets/base.html' %}
+{% load static %}
+
+{% block title %}Adopt a Cat | Perfect Pawfriend{% endblock %}
+
+{% block extra_css %}
+<style>
+    header {
+        background: #ffb6b9;
+        padding: 30px 0;
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        animation: slideIn 1.5s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .cat-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 40px;
+        animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cat-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .cat-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .cat-info {
+        padding: 20px;
+    }
+
+    .cat-info h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #ff7a8a;
+        margin-bottom: 10px;
+    }
+
+    .cat-info p {
+        margin: 8px 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .cat-info .breed {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .wishlist-btn {
+        margin-top: 15px;
+        display: inline-block;
+        background: #ff7a8a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .wishlist-btn:hover {
+        background: #ff5a6e;
+        transform: scale(1.02);
+    }
+
+    .wishlist-btn i {
+        margin-right: 8px;
+    }
+
+    .wishlist-btn.active {
+        background: #ff5a6e;
+    }
+
+    .cat-details {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+
+    .cat-details span {
+        display: block;
+        margin: 5px 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header>
+    🐾 Meet Our Purrfect Cats 🐱
+</header>
+
+<div class="cat-container">
+    <div class="cat-card">
+        <img src="{% static 'images/cat1.jpeg' %}" alt="Luna" class="cat-image">
+        <div class="cat-info">
+            <h3>Luna</h3>
+            <p class="breed">Persian</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 2 years</span>
+                <span><strong>Gender:</strong> Female</span>
+                <span><strong>Personality:</strong> Playful and affectionate</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+
+    <div class="cat-card">
+        <img src="{% static 'images/cat2.jpeg' %}" alt="Leo" class="cat-image">
+        <div class="cat-info">
+            <h3>Leo</h3>
+            <p class="breed">Maine Coon</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 3 years</span>
+                <span><strong>Gender:</strong> Male</span>
+                <span><strong>Personality:</strong> Gentle giant</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+
+    <div class="cat-card">
+        <img src="{% static 'images/cat3.jpeg' %}" alt="Bella" class="cat-image">
+        <div class="cat-info">
+            <h3>Bella</h3>
+            <p class="breed">Siamese</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 1.5 years</span>
+                <span><strong>Gender:</strong> Female</span>
+                <span><strong>Personality:</strong> Vocal and social</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+
+    <div class="cat-card">
+        <img src="{% static 'images/cat4.jpeg' %}" alt="Max" class="cat-image">
+        <div class="cat-info">
+            <h3>Max</h3>
+            <p class="breed">British Shorthair</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 4 years</span>
+                <span><strong>Gender:</strong> Male</span>
+                <span><strong>Personality:</strong> Calm and dignified</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+
+    <div class="cat-card">
+        <img src="{% static 'images/cat5.jpeg' %}" alt="Milo" class="cat-image">
+        <div class="cat-info">
+            <h3>Milo</h3>
+            <p class="breed">Ragdoll</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 2.5 years</span>
+                <span><strong>Gender:</strong> Male</span>
+                <span><strong>Personality:</strong> Relaxed and friendly</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+
+    <div class="cat-card">
+        <img src="{% static 'images/cat6.jpeg' %}" alt="Lily" class="cat-image">
+        <div class="cat-info">
+            <h3>Lily</h3>
+            <p class="breed">Scottish Fold</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 1 year</span>
+                <span><strong>Gender:</strong> Female</span>
+                <span><strong>Personality:</strong> Sweet and curious</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+
+    <div class="cat-card">
+        <img src="{% static 'images/cat7.jpeg' %}" alt="Oliver" class="cat-image">
+        <div class="cat-info">
+            <h3>Oliver</h3>
+            <p class="breed">Bengal</p>
+            <div class="cat-details">
+                <span><strong>Age:</strong> 3.5 years</span>
+                <span><strong>Gender:</strong> Male</span>
+                <span><strong>Personality:</strong> Energetic and intelligent</span>
+            </div>
+            <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleWishlist(button) {
+    button.classList.toggle('active');
+    const catName = button.closest('.cat-card').querySelector('h3').textContent;
+    if (button.classList.contains('active')) {
+        button.innerHTML = '<i class="fa fa-heart"></i> Added to Wishlist';
+        // Here you would typically make an AJAX call to save to wishlist
+        alert(`${catName} has been added to your wishlist!`);
+    } else {
+        button.innerHTML = '<i class="fa fa-heart"></i> Add to Wishlist';
+        // Here you would typically make an AJAX call to remove from wishlist
+        alert(`${catName} has been removed from your wishlist.`);
+    }
+}
+</script>
+{% endblock %} 

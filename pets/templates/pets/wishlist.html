@@ -1,0 +1,136 @@
+<!-- pets/templates/pets/wishlist.html -->
+{% extends 'pets/base.html' %}
+{% load static %}
+
+{% block title %}Wishlist | Perfect Pawfriend{% endblock %}
+
+{% block extra_css %}
+<style>
+    .wishlist-container {
+        max-width: 1200px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    .wishlist-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: #ff7a8a;
+        font-size: 2.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .wishlist-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: #ff7a8a;
+    }
+
+    .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .pet-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pet-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .pet-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .pet-info {
+        padding: 1.5rem;
+    }
+
+    .pet-name {
+        color: #ff7a8a;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .pet-details {
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-wishlist {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: #fffafc;
+        border-radius: 20px;
+        margin: 2rem 0;
+    }
+
+    .empty-wishlist p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        background-color: #ffa4b6;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background-color: #ff7a8a;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="wishlist-container">
+    <h1 class="wishlist-title">Your Wishlist</h1>
+    
+    {% if wishlist %}
+        <div class="wishlist-grid">
+            {% for item in wishlist %}
+                <div class="pet-card">
+                    <img src="{{ item.dog.image.url }}" alt="{{ item.dog.name }}" class="pet-image">
+                    <div class="pet-info">
+                        <h2 class="pet-name">{{ item.dog.name }}</h2>
+                        <p class="pet-details">Age: {{ item.dog.age }} years</p>
+                        <p class="pet-details">Breed: {{ item.dog.species }}</p>
+                        <a href="{% url 'pet_detail' item.dog.id %}" class="btn">View Details
+                            
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-wishlist">
+            <p>Your wishlist is empty.</p>
+            <a href="{% url 'dogs' %}" class="btn">Browse Dogs</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

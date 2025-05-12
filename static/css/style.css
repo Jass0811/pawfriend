@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+.section-title {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+.feature-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    display: inline-block;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.donation-intro {
+    background-color: #fefcfb;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.donation-intro p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.donation-form {
+    background-color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.donation-form input, .donation-form select {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.donation-form button {
+    width: 80%;
+    padding: 12px;
+    background-color: #ff7a8a;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.donation-form button:hover {
+    background-color: #ff7a8a;
+    transform: scale(1.05);
+}
+
+.cta {
+    background-color: #fffafc;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.cta h3 {
+    font-size: 2rem;
+    color: #ff7a8a;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.cta button {
+    background-color: #ff7a8a;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta button:hover {
+    background-color: #ff7a8a;
+    transform: scale(1.05);
+}

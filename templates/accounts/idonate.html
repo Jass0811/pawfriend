@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Perfect Pawfriend</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Reset for padding and margins */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and Main Styles */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ff7a8a;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            margin: 0 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #ff5f73;
+        }
+
+        /* Donation & Support Section */
+        .donation-intro {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background-color: #fefcfb;
+        }
+
+        .donation-intro h2 {
+            font-size: 2.5rem;
+            color: #ff7a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .donation-intro p {
+            font-size: 1.2rem;
+            color: #444;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Donation Form Section */
+        .donation-form {
+            background-color: white;
+            padding: 2rem 1.5rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .donation-form h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ff7a8a;
+        }
+
+        .donation-form label {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            display: block;
+        }
+
+        .donation-form input,
+        .donation-form select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .donation-form button {
+            background-color: #ff7a8a;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .donation-form button:hover {
+            background-color: #ff5f73;
+            transform: scale(1.05);
+        }
+
+        /* Success Message */
+        .donation-success {
+            background-color: #e8f7e9;
+            color: #4caf50;
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #ff7a8a;
+            color: white;
+        }
+
+        /* Call to Action Button */
+        .cta {
+            background-color: #ff7a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta button {
+            background-color: white;
+            color: #ff7a8a;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta button:hover {
+            background-color: #f2d5d5;
+            transform: scale(1.05);
+        }
+
+        /* Donate Section Container */
+        .donate-container {
+            text-align: center;
+            padding: 5rem 2rem;
+            background-color: #fefcfb;
+        }
+
+        .donate-container h2 {
+            font-size: 2.5rem;
+            color: #ff7a8a;
+            margin-bottom: 1rem;
+        }
+
+        .donate-container p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .donate-btn {
+            background-color: #ff7a8a;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .donate-btn:hover {
+            background-color: #ff5f73;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="logo">Perfect Pawfriend</div>
+    <div>
+        <button onclick="window.location.href='/'" class="nav-button">Home</button>
+        <button onclick="window.location.href='/dogs'" class="nav-button">Dogs</button>
+        <button onclick="window.location.href='/cats'" class="nav-button">Cats</button>
+        <button onclick="window.location.href='/rabbits'" class="nav-button">Rabbits</button>
+        <button onclick="window.location.href='/faq'" class="nav-button">FAQ</button>
+        <button onclick="window.location.href='/donate'" class="nav-button">Donate</button>
+    </div>
+</nav>
+
+<!-- Donation & Support Introduction -->
+<section class="donation-intro">
+    <h2>Donate & Support</h2>
+    <p>Every day, animals in our community suffer from neglect, abuse, and homelessness.</p>
+    <p>iAdopt is dedicated to providing the care and support these animals need to thrive.</p>
+    <p>By donating to our cause, you can help make a difference in the lives of these innocent creatures. Your generosity will enable us to continue our work rescuing and rehoming animals, as well as educating the public on the importance of pet adoption.</p>
+    <p>Please consider making a donation today and join us in our mission to create a better world for all dogs and cats.</p>
+</section>
+
+<!-- Donation Form Section -->
+<section class="donation-form">
+    <h2>Make a Difference Today</h2>
+    <p>Your donation helps provide medical care, food, shelter, and love for pets in need.</p>
+
+    <form action="{% url 'donate' %}" method="post">
+        {% csrf_token %}
+        <label for="donation-amount">Donation Amount ($):</label>
+        <input type="number" id="donation-amount" name="donation_amount" placeholder="Enter amount" required>
+
+        <label for="donation-method">Donation Method:</label>
+        <select id="donation-method" name="donation_method" required>
+            <option value="one-time">One-time Donation</option>
+            <option value="monthly">Monthly Donation</option>
+        </select>
+
+        <label for="donor-name">Your Name:</label>
+        <input type="text" id="donor-name" name="donor_name" placeholder="Your Name" required>
+
+        <label for="donor-email">Your Email:</label>
+        <input type="email" id="donor-email" name="donor_email" placeholder="Your Email" required>
+
+        <button type="submit">Donate Now</button>
+    </form>
+</section>
+
+<!-- Confirmation Message -->
+{% if donation_received %}
+    <div class="donation-success">
+        Thank you for your donation!
+    </div>
+{% endif %}
+
+</body>
+</html>
